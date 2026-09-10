@@ -1,609 +1,175 @@
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <link rel="icon" type="image/x-icon" href="Gemini_Generated_Image_jtxx2mjtxx2mjtxx.png">
-    <meta name="google-adsense-account" content="ca-pub-3669554087716015">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Insight</title>
-    
-    <style>
-        :root { 
-            --bg-color: #0f172a; 
-            --card-bg: #1e293b; 
-            --text-main: #f8fafc; 
-            --text-muted: #94a3b8; 
-            --accent: #38bdf8; 
-        }
+<!-- CONTACT FORM WITH SIDE IMAGE (STYLE) -->
+<style>
+    /* Floating Contact Form Section */
+    .feedback-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+        margin-top: 40px;
+    }
+
+    /* Flexbox Container */
+    .feedback-card {
+        background: rgba(30, 41, 59, 0.75);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 20px;
+        padding: 35px;
+        width: 100%;
+        max-width: 950px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
+                    0 0 20px rgba(56, 189, 248, 0.15);
         
-        * {
-            max-width: 100%;
-            box-sizing: border-box;
-        }
+        /* Flexbox for Side-by-Side Layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 35px;
 
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            margin: 0; 
-            padding: 0; 
-            overflow-x: hidden;
-            top: 0px !important;
-        }
+        /* Floating Animation */
+        animation: floatCard 6s ease-in-out infinite;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
 
-        header { background-color: var(--card-bg); padding: 20px; text-align: center; border-bottom: 2px solid #334155; }
-        header h1 { margin: 0; color: var(--accent); font-size: 2.2rem; }
-        header p { margin: 5px 0 0 0; color: var(--text-muted); }
+    .feedback-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 22px 45px rgba(0, 0, 0, 0.6), 
+                    0 0 30px rgba(56, 189, 248, 0.3);
+    }
 
-        .main-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .grid-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .custom-card { background-color: var(--card-bg); padding: 25px; border-radius: 12px; cursor: pointer; border: 1px solid #334155; transition: transform 0.2s, border-color 0.2s; }
-        .custom-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .custom-card h3 { margin: 0 0 10px 0; color: var(--accent); font-size: 1.4rem; }
-        .custom-card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
-        .content-section { display: none; background-color: var(--card-bg); padding: 35px; border-radius: 12px; border: 1px solid #334155; }
-        .back-btn { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
-        .back-btn:hover { background: var(--accent); color: var(--bg-color); }
+    @keyframes floatCard {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
 
-        /* Article Styling */
-        .article-content {
-            max-width: 750px;
-            margin: 0 auto;
-            font-family: 'Lora', serif;
-            font-size: 19px;
-            line-height: 1.8;
-            color: #e0e0e0;
-            white-space: pre-wrap;
-        }
-        .article-content h2 { font-size: 32px; margin-top: 50px; margin-bottom: 20px; color: #ffffff; }
-        .article-content p { margin-bottom: 25px; }
-        .article-content ul { margin-bottom: 25px; padding-left: 20px; }
-        .article-content li { margin-bottom: 10px; line-height: 1.6; }
-        .article-content strong { color: #ffffff; }
+    /* Side Image Styling */
+    .feedback-image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
 
-        /* Vivus Logo */
-        #carpenter-logo path {
-            fill: none;
-            stroke: #ffffff;
-            stroke-width: 1.25px;
-        }
+    .feedback-image {
+        width: 100%;
+        max-width: 380px;
+        height: 100%;
+        max-height: 420px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
 
-        /* Translate Box */
-        .custom-translate-wrapper {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 99999;
-            background: #ffffff;
-            padding: 10px 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-        .translate-label { font-family: sans-serif; font-size: 12px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
-        .goog-te-combo { padding: 5px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; color: #333; }
-        .goog-te-banner-frame.skiptranslate, .goog-logo-link, .goog-te-gadget span { display: none !important; }
+    /* Form Container */
+    .feedback-form-container {
+        flex: 1.2;
+        width: 100%;
+    }
 
-        /* Floating Contact Form Styles */
-        .feedback-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 20px;
-            margin-top: 40px;
-        }
+    .feedback-header { 
+        text-align: left; 
+        margin-bottom: 25px; 
+    }
+    
+    .feedback-title { 
+        color: #ffffff; 
+        font-size: 1.8rem; 
+        font-weight: 700; 
+        margin-bottom: 8px; 
+        margin-top: 0;
+    }
+    
+    .feedback-subtitle { 
+        color: #94a3b8; 
+        font-size: 0.95rem; 
+        margin: 0;
+    }
 
+    .feedback-form { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 16px; 
+    }
+    
+    .form-group { 
+        display: flex; 
+        flex-direction: column; 
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px 16px;
+        background-color: rgba(15, 23, 42, 0.8);
+        border: 1px solid #334155;
+        border-radius: 10px;
+        color: #ffffff;
+        font-size: 0.95rem;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-input::placeholder { color: #64748b; }
+
+    .form-input:focus {
+        border-color: #38bdf8;
+        background-color: rgba(15, 23, 42, 0.95);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+    }
+
+    textarea.form-input { 
+        resize: vertical; 
+        min-height: 110px; 
+    }
+
+    .submit-btn {
+        background: linear-gradient(135deg, #0284c7, #0369a1);
+        color: #ffffff;
+        border: none;
+        padding: 14px;
+        border-radius: 10px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+        margin-top: 5px;
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(135deg, #38bdf8, #0284c7);
+        box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+        transform: translateY(-2px);
+    }
+
+    /* Responsive for Mobile Devices */
+    @media only screen and (max-width: 768px) {
         .feedback-card {
-            background: rgba(30, 41, 59, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            width: 100%;
-            max-width: 750px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
-                        0 0 20px rgba(56, 189, 248, 0.15);
-            
-            /* Floating Animation */
-            animation: floatCard 6s ease-in-out infinite;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            flex-direction: column;
+            padding: 25px 20px;
         }
-
-        .feedback-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.6), 
-                        0 0 30px rgba(56, 189, 248, 0.3);
-        }
-
-        @keyframes floatCard {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .feedback-header { text-align: center; margin-bottom: 30px; }
-        .feedback-title { color: #ffffff; font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
-        .feedback-subtitle { color: var(--text-muted); font-size: 0.95rem; }
-
-        .feedback-form { display: flex; flex-direction: column; gap: 18px; }
-        .form-group { display: flex; flex-direction: column; }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            background-color: rgba(15, 23, 42, 0.8);
-            border: 1px solid #334155;
-            border-radius: 10px;
-            color: #ffffff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .form-input::placeholder { color: #64748b; }
-
-        .form-input:focus {
-            border-color: var(--accent);
-            background-color: rgba(15, 23, 42, 0.95);
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
-        }
-
-        textarea.form-input { resize: vertical; min-height: 120px; }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
-            color: #ffffff;
-            border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background: linear-gradient(135deg, #38bdf8, #0284c7);
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
-            transform: translateY(-2px);
-        }
-
-        /* Disclaimer Footer Banner */
-        .disclaimer-banner {
-            background-color: rgba(220, 38, 38, 0.15);
-            border: 1px solid rgba(220, 38, 38, 0.4);
-            border-radius: 8px;
-            padding: 12px 20px;
-            margin: 20px auto 40px auto;
-            max-width: 750px;
+        .feedback-header {
             text-align: center;
-            font-size: 0.85rem;
-            color: #fca5a5;
         }
-
-        @media only screen and (max-width: 600px) {
-            .article-content { font-size: 17px; padding: 15px; }
-            .article-content h2 { font-size: 26px; }
-            .feedback-card { padding: 25px 20px; }
+        .feedback-image {
+            max-height: 250px;
         }
-    </style>
-    
-    <script src="https://cdn.jsdelivr.net/npm/vivus@latest/dist/vivus.min.js"></script>
-</head>
-<body>
+    }
+</style>
 
-    <!-- DialogFlow Chatbot -->
-    <iframe height="430" width="350" src="https://bot.dialogflow.com/7a41d079-def2-4617-afe5-a47294d46a68" style="display:none;"></iframe>
-    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    <df-messenger chat-title="agent1" agent-id="7a41d079-def2-4617-afe5-a47294d46a68" language-code="en"></df-messenger>
-
-    <!-- Background Animated SVG Logo -->
-    <div class="background blue-purple"></div>
-    <div class="background green-blue"></div>
-
-    <div class="svg-wrapper">
-        <svg id="carpenter-logo" width="273px" height="72px" viewBox="0 0 273 72"></svg>
-    </div>
-
-    <script>
-        new Vivus('carpenter-logo', {
-            type: 'delayed',
-            duration: 200,
-            animTimingFunction: Vivus.EASE_OUT
-        });
-    </script>
-
-    <!-- Google Translator -->
-    <div class="custom-translate-wrapper">
-        <span class="translate-label">Translate Here</span>
-        <div id="google_translate_element"></div>
-    </div>
-
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en', 
-                includedLanguages: 'en,si,ta',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!-- Header Section -->
-    <header>
-        <h1><b>Finance Insight 📊</b></h1>
-        <p>මූල්‍ය සහ දත්ත විශ්ලේෂණ දැනුම ඔබට සමීපම තැනකින්</p>
-    </header>
-
-    <!-- Search Bar Section -->
-    <div class="fluid-search-container">
-        <div class="fluid-capsule" id="search-capsule">
-            <div class="search-inner-content">
-                <span class="fluid-search-icon" onclick="focusSearch()">🔍</span>
-                <input 
-                    type="text" 
-                    id="blog-search-input" 
-                    placeholder="Type CSE Company Name or Ticker (e.g., JKH, COMB, SAMP)..." 
-                    oninput="searchCseCompanies()"
-                    onfocus="expandCapsule()"
-                    autocomplete="off"
-                >
-                <button id="clear-search-btn" onmousedown="clearSearch(event)">✕</button>
-            </div>
-        </div>
-        
-        <div id="search-results-dropdown" class="fluid-results-box" style="display: none;"></div>
-    </div>
-
-    <!-- Chart Section -->
-    <div class="chart-section-wrapper" id="chart-section" style="display: none;">
-        <div class="chart-header">
-            <h3 id="selected-company-name">John Keells Holdings PLC (JKH)</h3>
-            <button class="close-chart-btn" onclick="closeChart()">✕ Close Chart</button>
-        </div>
-        <div id="tradingview-widget-container"></div>
-    </div>
-
-    <style>
-        .fluid-search-container { max-width: 1100px; margin: 20px auto; position: relative; display: flex; justify-content: center; font-family: 'Segoe UI', sans-serif; }
-        .fluid-capsule { width: 220px; height: 46px; background: #0f172a; border-radius: 30px; padding: 0 16px; display: flex; align-items: center; transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); overflow: hidden; }
-        .fluid-capsule.expanded { width: 100%; background: #ffffff; border: 2px solid #0284c7; box-shadow: 0 10px 30px rgba(2, 132, 199, 0.15); }
-        .search-inner-content { display: flex; align-items: center; width: 100%; height: 100%; }
-        .fluid-search-icon { font-size: 1.2rem; color: #94a3b8; cursor: pointer; margin-right: 12px; }
-        .fluid-capsule.expanded .fluid-search-icon { color: #0284c7; }
-        #blog-search-input { border: none; outline: none; width: 100%; font-size: 1rem; font-weight: 600; background: transparent; color: #ffffff; }
-        .fluid-capsule.expanded #blog-search-input { color: #0f172a; }
-        #blog-search-input::placeholder { color: #64748b; }
-        #clear-search-btn { background: none; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer; display: none; }
-        .fluid-results-box { position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; margin-top: 12px; max-height: 300px; overflow-y: auto; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); z-index: 9999; animation: fluidOpen 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1); }
-        @keyframes fluidOpen { 0% { transform: translateY(-10px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-        .result-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; text-decoration: none; color: #1e293b; border-bottom: 1px solid #f1f5f9; cursor: pointer; transition: background 0.2s; }
-        .result-item:hover { background: #f0f9ff; }
-        .result-title { font-size: 0.95rem; font-weight: 600; color: #0f172a; }
-        .result-ticker { font-size: 0.8rem; color: #64748b; font-weight: 700; }
-        .badge-cse { background: #e0f2fe; color: #0369a1; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
-        .chart-section-wrapper { max-width: 1100px; margin: 30px auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); font-family: 'Segoe UI', sans-serif; animation: fluidOpen 0.5s ease; }
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .chart-header h3 { margin: 0; color: #0f172a; font-size: 1.2rem; font-weight: 700; }
-        .close-chart-btn { background: #fee2e2; border: 1px solid #fecaca; color: #dc2626; padding: 6px 14px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-        .close-chart-btn:hover { background: #dc2626; color: #ffffff; }
-        #tradingview-widget-container { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; }
-    </style>
-
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script>
-        const cseDatabase = [
-            { name: "John Keells Holdings PLC", ticker: "JKH" },
-            { name: "Commercial Bank of Ceylon PLC", ticker: "COMB" },
-            { name: "Sampath Bank PLC", ticker: "SAMP" },
-            { name: "HNB - Hatton National Bank PLC", ticker: "HNB" },
-            { name: "Hayleys PLC", ticker: "HAYL" },
-            { name: "LOLC Holdings PLC", ticker: "LOLC" },
-            { name: "Dialog Axiata PLC", ticker: "DIAL" },
-            { name: "Melstacorp PLC", ticker: "MELS" },
-            { name: "Distilleries Company of Sri Lanka PLC", ticker: "DIST" },
-            { name: "Aitken Spence PLC", ticker: "SPEN" },
-            { name: "Brown & Company PLC", ticker: "BRWN" },
-            { name: "Galadari Hotels (Lanka) PLC", ticker: "GHLL" },
-            { name: "Acme Printing & Packaging PLC", ticker: "ACME" },
-            { name: "Ceylon Tobacco Company PLC", ticker: "CTC" },
-            { name: "Chevron Lubricants Lanka PLC", ticker: "LLUB" },
-            { name: "National Development Bank PLC", ticker: "NDB" },
-            { name: "DFCC Bank PLC", ticker: "DFCC" },
-            { name: "Seylan Bank PLC", ticker: "SEYB" },
-            { name: "Pan Asia Banking Corporation PLC", ticker: "PABC" },
-            { name: "Nations Trust Bank PLC", ticker: "NTB" },
-            { name: "Access Engineering PLC", ticker: "AEL" },
-            { name: "Hemas Holdings PLC", ticker: "HHL" },
-            { name: "Expolanka Holdings PLC", ticker: "EXPO" },
-            { name: "Richard Pieris & Company PLC", ticker: "RICH" },
-            { name: "Vallibel One PLC", ticker: "VONE" },
-            { name: "Royal Ceramics Lanka PLC", ticker: "RCL" },
-            { name: "Lanka TILES PLC", ticker: "TILE" },
-            { name: "Lanka WALLTILES PLC", ticker: "LWL" },
-            { name: "Softlogic Holdings PLC", ticker: "SHL" },
-            { name: "Singer (Sri Lanka) PLC", ticker: "SINS" },
-            { name: "Ceylon Cold Stores PLC", ticker: "CCS" },
-            { name: "John Keells Hotels PLC", ticker: "KHL" },
-            { name: "Aitken Spence Hotel Holdings PLC", ticker: "AHUN" },
-            { name: "Amaya Leisure PLC", ticker: "CONN" },
-            { name: "Asiri Hospital Holdings PLC", ticker: "ASIR" },
-            { name: "Nawaloka Hospitals PLC", ticker: "NHL" },
-            { name: "Lanka Hospitals Corporation PLC", ticker: "LHCL" },
-            { name: "Ceylon Grain Elevators PLC", ticker: "GRAN" },
-            { name: "Three Acre Farms PLC", ticker: "TAFL" },
-            { name: "Watawala Plantations PLC", ticker: "WATA" },
-            { name: "Agalawatte Plantations PLC", ticker: "AGAL" },
-            { name: "Kelani Valley Plantations PLC", ticker: "KVAL" },
-            { name: "Elpitiya Plantations PLC", ticker: "ELPL" },
-            { name: "Hatton Plantations PLC", ticker: "HPL" },
-            { name: "Tea Smallholder Factories PLC", ticker: "TSML" },
-            { name: "Tokyo Cement Company (Lanka) PLC", ticker: "TKYO" },
-            { name: "Lanka Aluminium Industries PLC", ticker: "LALU" },
-            { name: "Kelani Cables PLC", ticker: "KCAB" },
-            { name: "Sierra Cables PLC", ticker: "SIRA" },
-            { name: "ACL Cables PLC", ticker: "ACL" },
-            { name: "Lanka IOC PLC", ticker: "LIOC" },
-            { name: "LAUGFS Gas PLC", ticker: "LGL" }
-        ];
-
-        const capsule = document.getElementById('search-capsule');
-        const dropdown = document.getElementById('search-results-dropdown');
-        const searchInput = document.getElementById('blog-search-input');
-        const clearBtn = document.getElementById('clear-search-btn');
-
-        function expandCapsule() { capsule.classList.add('expanded'); }
-        function focusSearch() { searchInput.focus(); }
-
-        function searchCseCompanies() {
-            const query = searchInput.value.trim().toLowerCase();
-            if (query.length < 1) {
-                dropdown.style.display = 'none';
-                clearBtn.style.display = 'none';
-                return;
-            }
-            clearBtn.style.display = 'block';
-
-            const filtered = cseDatabase.filter(item => 
-                item.name.toLowerCase().includes(query) || item.ticker.toLowerCase().includes(query)
-            );
-
-            if (filtered.length > 0) {
-                let htmlContent = '';
-                filtered.slice(0, 8).forEach(item => {
-                    htmlContent += `
-                        <div class="result-item" onclick="openTradingViewChart('${item.ticker}', '${item.name}')">
-                            <div>
-                                <div class="result-title">${item.name}</div>
-                                <div class="result-ticker">Ticker: ${item.ticker} | COLOMBO</div>
-                            </div>
-                            <span class="badge-cse">CSE Stock</span>
-                        </div>
-                    `;
-                });
-                dropdown.innerHTML = htmlContent;
-                dropdown.style.display = 'block';
-            } else {
-                const customTicker = query.toUpperCase();
-                dropdown.innerHTML = `
-                    <div class="result-item" onclick="openTradingViewChart('${customTicker}', 'Custom Search')">
-                        <div>
-                            <div class="result-title">Search custom ticker "${customTicker}" on TradingView</div>
-                            <div class="result-ticker">Ticker: ${customTicker}</div>
-                        </div>
-                        <span class="badge-cse" style="background:#f1f5f9; color:#475569;">Direct Chart</span>
-                    </div>
-                `;
-                dropdown.style.display = 'block';
-            }
-        }
-
-        function openTradingViewChart(ticker, companyName) {
-            dropdown.style.display = 'none';
-            document.getElementById('selected-company-name').innerText = `${companyName} (${ticker})`;
-            document.getElementById('chart-section').style.display = 'block';
-
-            new TradingView.widget({
-                "width": "100%",
-                "height": 500,
-                "symbol": `CSE:${ticker}`,
-                "interval": "D",
-                "timezone": "Asia/Colombo",
-                "theme": "light",
-                "style": "1",
-                "locale": "en",
-                "toolbar_bg": "#f1f5f9",
-                "enable_publishing": false,
-                "hide_side_toolbar": false,
-                "allow_symbol_change": false,
-                "container_id": "tradingview-widget-container",
-                "studies": [
-                    "RSI@tv-basicstudies",
-                    "MASimple@tv-basicstudies"
-                ]
-            });
-
-            capsule.classList.remove('expanded');
-        }
-
-        function closeChart() {
-            document.getElementById('chart-section').style.display = 'none';
-            searchInput.value = '';
-            clearBtn.style.display = 'none';
-        }
-
-        function clearSearch(event) {
-            event.preventDefault();
-            searchInput.value = '';
-            dropdown.style.display = 'none';
-            clearBtn.style.display = 'none';
-            searchInput.focus();
-        }
-
-        document.addEventListener('click', function(event) {
-            const container = document.querySelector('.fluid-search-container');
-            if (container && !container.contains(event.target)) {
-                dropdown.style.display = 'none';
-                if (searchInput.value.trim().length === 0) {
-                    capsule.classList.remove('expanded');
-                }
-            }
-        });
-    </script>
-
-    <!-- Slideshow Section -->
-    <div id="home-slideshow-wrapper">
-        <div class="slideshow-area">
-            <div class="mySlides fade"><div class="numbertext">1 / 5</div><img src="https://gestaltadvisory.com/wp-content/uploads/2023/04/Gestalt-Advisory-Image-04.jpg" alt="Slide 1"></div>
-            <div class="mySlides fade"><div class="numbertext">2 / 5</div><img src="https://media.licdn.com/dms/image/v2/C5612AQG8sXTu3xj0vg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1629388451625?e=2147483647&v=beta&t=IAvoJuIjvvA_x2WNALrheEtTQPL6Pjrd2ypsOKJKbQs" alt="Slide 2"></div>
-            <div class="mySlides fade"><div class="numbertext">3 / 5</div><img src="https://storage.e.jimdo.com/cdn-cgi/image/quality=85,fit=crop,format=auto,width=1028.5714285714284,height=540/image/183802841/51da2ad7-5b3a-44df-a713-ff19957c7068.jpg" alt="Slide 3"></div>
-            <div class="mySlides fade"><div class="numbertext">4 / 5</div><img src="https://mf-journal.com/public/journals/1/slider_image_jpgHzgfmM.jpg" alt="Slide 4"></div>
-            <div class="mySlides fade"><div class="numbertext">5 / 5</div><img src="https://personalefinance.com/wp-content/uploads/Top-Characteristics-of-Finance-FAQ-What-are-Finance-Characteristics-Frequently-Asked-Questions.webp" alt="Slide 5"></div>
-            
-            <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
-            <button class="next" onclick="plusSlides(1)">&#10095;</button>
+<!-- CONTACT FORM WITH SIDE IMAGE (HTML) -->
+<section class="feedback-section">
+    <div class="feedback-card">
+        <!-- Side Image Container -->
+        <div class="feedback-image-container">
+            <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=800&auto=format&fit=crop" alt="Contact Us" class="feedback-image">
         </div>
 
-        <div class="dots-container">
-            <span class="dot" onclick="currentSlide(1)"></span> 
-            <span class="dot" onclick="currentSlide(2)"></span> 
-            <span class="dot" onclick="currentSlide(3)"></span> 
-            <span class="dot" onclick="currentSlide(4)"></span> 
-            <span class="dot" onclick="currentSlide(5)"></span> 
-        </div>
-    </div>
-
-    <style>
-        #home-slideshow-wrapper { max-width: 1100px; width: 100%; margin: 30px auto 10px auto; font-family: 'Segoe UI', sans-serif; }
-        .slideshow-area { position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); background-color: #1e293b; }
-        .mySlides { display: none; }
-        .mySlides img { vertical-align: middle; width: 100%; height: 350px; object-fit: cover; }
-        .prev, .next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -22px; color: white; font-weight: bold; font-size: 20px; transition: 0.6s ease; background-color: rgba(0,0,0,0.3); border: none; z-index: 10; }
-        .next { right: 0; }
-        .prev:hover, .next:hover { background-color: #38bdf8; color: #0f172a; }
-        .numbertext { color: #f2f2f2; font-size: 12px; padding: 8px 12px; position: absolute; top: 0; background-color: rgba(0,0,0,0.5); border-radius: 0 0 8px 0; }
-        .dots-container { text-align: center; margin-top: 15px; margin-bottom: 30px; }
-        .dot { cursor: pointer; height: 10px; width: 10px; margin: 0 4px; background-color: #334155; border-radius: 50%; display: inline-block; transition: background-color 0.6s ease; }
-        .active, .dot:hover { background-color: #38bdf8; }
-        .fade { animation-name: slideshowFade; animation-duration: 1s; }
-        @keyframes slideshowFade { from { opacity: .4 } to { opacity: 1 } }
-    </style>
-
-    <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) { showSlides(slideIndex += n); }
-        function currentSlide(n) { showSlides(slideIndex = n); }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            
-            if (slides.length === 0) return;
-            if (n > slides.length) { slideIndex = 1 }    
-            if (n < 1) { slideIndex = slides.length }
-            
-            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
-            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
-            
-            slides[slideIndex-1].style.display = "block";  
-            dots[slideIndex-1].className += " active";
-        }
-    </script>
-
-    <!-- Main Content Grid -->
-    <div class="main-container">
-        <div id="main-view">
-            <h2 id="view-title">ප්‍රධාන විෂය පථයන් (Main Topics)</h2>
-            <div id="menu-grid" class="grid-view"></div>
-        </div>
-
-        <div id="article-view" class="content-section">
-            <button id="back-btn" class="back-btn">← ආපසු</button>
-            <div id="post-body" class="article-content">ලෝඩ් වෙමින්...</div>
-        </div>
-    </div>
-
-    <!-- Main Dynamic Script -->
-    <script>
-        let siteData = {};
-        let currentLevel = 'main'; 
-        let currentTopicId = '';
-
-        fetch('site-menu.txt')
-            .then(res => res.json())
-            .then(data => {
-                siteData = data;
-                renderMainMenu();
-            })
-            .catch(() => {
-                document.getElementById('menu-grid').innerHTML = "<p style='color:red;'>site-menu.txt ෆයිල් එක කියවීමට නොහැක!</p>";
-            });
-
-        function renderMainMenu() {
-            currentLevel = 'main';
-            document.getElementById('article-view').style.display = 'none';
-            document.getElementById('main-view').style.display = 'block';
-            document.getElementById('view-title').innerText = "ප්‍රධාන විෂය පථයන් (Main Topics)";
-            
-            let html = '';
-            for (let id in siteData) {
-                html += `
-                    <div class="custom-card" onclick="renderSubMenu('${id}')">
-                        <h3>${siteData[id].title}</h3>
-                        <p>${siteData[id].desc}</p>
-                    </div>`;
-            }
-            document.getElementById('menu-grid').innerHTML = html;
-        }
-
-        function renderSubMenu(topicId) {
-            currentLevel = 'sub';
-            currentTopicId = topicId;
-            document.getElementById('view-title').innerText = siteData[topicId].title + " - ලිපි ලැයිස්තුව";
-            
-            let html = `<button class="back-btn" onclick="renderMainMenu()">← :ප්‍රධාන Topics වෙත</button><br><br>`;
-            let articles = siteData[topicId].articles;
-            
-            articles.forEach(art => {
-                html += `
-                    <div class="custom-card" style="margin-bottom:15px;" onclick="loadArticle('${art.file}')">
-                        <h3>${art.name}</h3>
-                        <p>${art.short}</p>
-                    </div>`;
-            });
-            document.getElementById('menu-grid').innerHTML = html;
-        }
-
-        function loadArticle(fileName) {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('article-view').style.display = 'block';
-            
-            document.getElementById('back-btn').onclick = function() {
-                document.getElementById('article-view').style.display = 'none';
-                document.getElementById('main-view').style.display = 'block';
-                renderSubMenu(currentTopicId);
-            };
-
-            fetch(fileName)
-                .then(res => { if(!res.ok) throw new Error(); return res.text(); })
-                .then(text => { document.getElementById('post-body').innerHTML = text; })
-                .catch(() => { document.getElementById('post-body').innerHTML = "<h3 style='color:red;'>ලිපිය තවම ලියා නැත!</h3><p>GitHub එකේ " + fileName + " නමින් ෆයිල් එකක් සාදන්න.</p>"; });
-        }
-    </script>
-
-    <!-- FLOATING FLEXBOX CONTACT FORM SECTION -->
-    <section class="feedback-section">
-        <div class="feedback-card">
+        <!-- Form Container -->
+        <div class="feedback-form-container">
             <div class="feedback-header">
                 <h2 class="feedback-title">
                     අප වෙත අදහස් යොමු කරන්න 💬
@@ -639,94 +205,5 @@
                 </button>
             </form>
         </div>
-    </section>
-
-    <!-- Disclaimer Section -->
-    <div class="disclaimer-banner">
-        <strong>⚠️ DISCLAIMER:</strong> The information provided on this platform is for educational and informational purposes only and should not be construed as professional financial or investment advice.
     </div>
-
-    <!-- AI Chatbot Assistant Widget -->
-    <div id="chat-icon" onclick="toggleChat()">💬</div>
-
-    <div id="chat-widget">
-        <div class="chat-header">
-            <span>Support Assistant</span>
-            <span onclick="toggleChat()" style="cursor:pointer">✕</span>
-        </div>
-        <div id="chat-messages">
-            <p class="bot-msg">Howdy there 👋<br>I'm your personal AI assistant. How can I help?</p>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="user-input" placeholder="Ask anything..." onkeypress="if(event.key === 'Enter') sendMessage()">
-            <button onclick="sendMessage()">➤</button>
-        </div>
-    </div>
-
-    <style>
-        #chat-icon { position:fixed; bottom:20px; right:20px; background:#fff; padding:15px; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.2); cursor:pointer; font-size:24px; z-index:9999; }
-        #chat-widget { display:none; position:fixed; bottom:80px; right:20px; width:320px; height:400px; background:#fff; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2); z-index:9999; flex-direction:column; border:1px solid #ddd; }
-        .chat-header { background:#007bff; color:white; padding:15px; display:flex; justify-content:space-between; font-weight:bold; }
-        #chat-messages { flex:1; padding:15px; overflow-y:auto; font-size:14px; color: black; }
-        .bot-msg { background:#f1f3f4; padding:10px; border-radius:8px; margin-bottom:10px; color:black; text-align: left; }
-        .user-msg { text-align:right; color:#007bff; margin-bottom:10px; background: #e3f2fd; padding: 10px; border-radius: 8px; }
-        .chat-input-area { display:flex; border-top:1px solid #eee; padding:5px; }
-        #user-input { border:none; padding:10px; outline:none; flex:1; color: black; }
-        button { background:none; border:none; color:#007bff; font-weight:bold; padding:10px; cursor:pointer; font-size:18px; }
-    </style>
-
-    <script>
-        function toggleChat() {
-            const w = document.getElementById('chat-widget');
-            w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        async function sendMessage() {
-            const input = document.getElementById('user-input');
-            const msgs = document.getElementById('chat-messages');
-            if(!input.value.trim()) return;
-
-            const userQuery = input.value;
-            msgs.innerHTML += `<div class="user-msg"><b>You:</b> ${userQuery}</div>`;
-            input.value = '';
-            msgs.scrollTop = msgs.scrollHeight;
-            
-            try {
-                const res = await fetch('https://ashehansl-github-io-7mrkhtyoi-avishka-shehan-s-projects.vercel.app/api/chat', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ message: userQuery })
-                });
-                const data = await res.json();
-                
-                if(data.candidates && data.candidates[0].content.parts[0].text) {
-                    let botReply = data.candidates[0].content.parts[0].text;
-                    msgs.innerHTML += `<div class="bot-msg"><b>Bot:</b> ${botReply}</div>`;
-                } else {
-                    msgs.innerHTML += `<div class="bot-msg" style="color:red;"><b>Bot:</b> ලැබුණු දත්ත කියවීමට නොහැක.</div>`;
-                }
-            } catch(e) {
-                msgs.innerHTML += `<div class="bot-msg" style="color:red;"><b>Bot:</b> Error: Server connection failed.</div>`;
-            }
-            msgs.scrollTop = msgs.scrollHeight;
-        }
-
-        // Contact Form Submission Handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = 'යවමින් පවතී... ⏳';
-            submitBtn.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                alert('ඔබගේ පණිවිඩය සාර්ථකව යොමු කරන ලදී!');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.opacity = '1';
-            }, 1200);
-        });
-    </script>
-</body>
-</html>
+</section>
